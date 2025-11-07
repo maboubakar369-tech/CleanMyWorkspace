@@ -1,36 +1,36 @@
-package main 
+package main
 
 import (
 	"fmt"
-	"github.com/maboubakar369/CleanMyWorkspace/Clean"
+
+	"github.com/maboubakar369-tech/CleanMyWorkspace/Clean"
+	cmw "github.com/maboubakar369-tech/CleanMyWorkspace/Mentor/Paris/CleanMyWorkspace"
 )
 
 func main() {
-	souk := GénérerWorkSpace()
+	// Génération du souk
+	workspace := cmw.GenererateWorkSpace()
 
-	fmt.Println("=== Espace de travail AVANT le nettoyage ===")
-	GenererWorkSpace(souk)
+	fmt.Println("===== SOUK AVANT NETTOYAGE =====")
+	printWorkspace(workspace)
 
-	soukNettoye := Clean.CleanWorkSpace(souk)
+	// Nettoyage du souk
+	Clean.CleanWorkSpace(workspace)
 
-	fmt.Println("\n=== Espace de travail APRÈS le nettoyage ===")
-	GenererWorkSpace(soukNettoye)
+	fmt.Println("\n===== SOUK APRÈS NETTOYAGE =====")
+	printWorkspace(workspace)
 }
 
-func GenererWorkSpace(workspace *[][]*string) {
-	for _, ligne := range *workspace {
+func printWorkspace(workspace *[][]*string) {
+	for _, row := range *workspace {
 		fmt.Print("|")
-		for _, case_ := range ligne {
-			if case_ == nil {
+		for _, item := range row {
+			if item == nil {
 				fmt.Print("nil|")
 			} else {
-				fmt.Printf("%s|", *case_)
+				fmt.Printf("%s|", *item)
 			}
 		}
 		fmt.Println()
 	}
 }
-
-
-
-
